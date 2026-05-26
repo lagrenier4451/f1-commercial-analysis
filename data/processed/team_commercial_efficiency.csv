@@ -1,0 +1,9 @@
+team_canonical,avg_championship_position,avg_valuation_usd_m,total_wins,team_key,instagram_followers_m,commercial_rank,performance_rank,commercial_vs_performance_gap
+Ferrari,2.5,3955.0,6,ferrari,10.2,1.0,2.5,1.5
+Mercedes-AMG Petronas,3.0,3320.0,4,mercedesamgpetronas,10.2,2.0,4.0,2.0
+Red Bull Racing,2.0,2960.0,30,redbullracing,9.2,3.0,1.0,-2.0
+McLaren Racing,2.5,2075.0,6,mclarenracing,10.1,4.0,2.5,-1.5
+Aston Martin F1,5.0,1605.0,0,astonmartinf,2.9,5.0,5.0,0.0
+Alpine F1 Team,6.0,1290.0,0,alpinefteam,2.7,6.0,6.0,0.0
+Williams Racing,8.0,970.0,0,williamsracing,2.3,7.0,7.0,0.0
+Haas F1 Team,8.5,865.0,0,haasfteam,2.5,8.0,8.0,0.0

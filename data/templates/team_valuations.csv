@@ -1,0 +1,21 @@
+year,team,valuation_usd_m,revenue_usd_m,operating_income_usd_m,source,notes
+2023,Ferrari,3130,,,"Sportico June 2023","Combined 10-team value $15.3B; avg $1.5B. Revenue multiples averaged ~5x."
+2023,Mercedes-AMG Petronas,2700,,114,"Sportico June 2023","Largest operating profit of any team in 2022 at $114M."
+2023,Red Bull Racing,2420,,,"Sportico June 2023","Cost cap violations in 2021 noted as risk factor."
+2023,McLaren Racing,1500,,,"Sportico June 2023","McLaren lost $137M in 2018; Sportico noted expectation of profitability by 2023."
+2023,Aston Martin F1,1140,,,"Sportico June 2023","Reported $250M revenue; $220M from sponsorship alone."
+2023,Alpine F1 Team,1080,,,"Sportico June 2023","Valued 20% above the $218M paid for a 24% stake by investors."
+2023,Williams Racing,700,,,"Sportico June 2023 (derived)","Derived: $15.3B total minus named teams."
+2023,AlphaTauri / RB,710,,,"Sportico June 2023 (derived)","Derived from combined total."
+2023,Alfa Romeo / Sauber,710,,,"Sportico June 2023 (derived)","Derived from combined total."
+2023,Haas F1 Team,710,,,"Sportico June 2023","Explicitly named as lowest-valued team."
+2024,Ferrari,4780,,,"Sportico November 2024","First time all 10 teams valued above $1B. Avg $2.31B up 44% from June 2023."
+2024,Mercedes-AMG Petronas,3940,,,"Sportico November 2024",
+2024,Red Bull Racing,3500,,,"Sportico November 2024",
+2024,McLaren Racing,2650,,,"Sportico November 2024",
+2024,Aston Martin F1,2070,,,"Sportico November 2024",
+2024,Alpine F1 Team,1500,,,"Sportico November 2024",
+2024,Williams Racing,1240,,,"Sportico November 2024",
+2024,RB (AlphaTauri),1220,,,"Sportico November 2024",
+2024,Kick Sauber,1200,,,"Sportico November 2024",
+2024,Haas F1 Team,1020,,,"Sportico November 2024","10th place; first time above $1B."

@@ -1,0 +1,7 @@
+sport,cpm_usd,avg_viewers_per_event_m,cost_per_viewer_usd,source
+F1 (global),28.0,75.0,0.028,Estimated from FOM data
+NFL (US),45.0,17.0,0.045,Nielsen 2023
+Premier League (UK),18.0,1.2,0.018,Various industry reports
+NBA (US),25.0,2.1,0.025,Nielsen 2023
+Champions League,22.0,12.0,0.022,Industry estimates
+"Olympics (summer, global)",35.0,600.0,0.035,Various
