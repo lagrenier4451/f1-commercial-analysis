@@ -6,6 +6,8 @@ year,position,points,wins,constructor_name,team_canonical,valuation_usd_m,revenu
 2023,5,280.0,0,Aston Martin,Aston Martin F1,1140,,4.071428571428571,190.0
 2023,6,120.0,0,Alpine F1 Team,Alpine F1 Team,1080,,9.0,216.0
 2023,7,28.0,0,Williams,Williams Racing,700,,25.0,175.0
+2023,8,25.0,0,AlphaTauri,AlphaTauri / RB,710,,28.4,236.66666666666666
+2023,9,16.0,0,Alfa Romeo,Alfa Romeo / Sauber,710,,44.375,355.0
 2023,10,12.0,0,Haas F1 Team,Haas F1 Team,710,,59.166666666666664,710.0
 2024,1,666.0,6,McLaren,McLaren Racing,2650,,3.978978978978979,265.0
 2024,2,652.0,5,Ferrari,Ferrari,4780,,7.331288343558282,531.1111111111111
@@ -14,4 +16,6 @@ year,position,points,wins,constructor_name,team_canonical,valuation_usd_m,revenu
 2024,5,94.0,0,Aston Martin,Aston Martin F1,2070,,22.02127659574468,345.0
 2024,6,65.0,0,Alpine F1 Team,Alpine F1 Team,1500,,23.076923076923077,300.0
 2024,7,58.0,0,Haas F1 Team,Haas F1 Team,1020,,17.586206896551722,255.0
+2024,8,46.0,0,RB F1 Team,RB (AlphaTauri),1220,,26.52173913043478,406.6666666666667
 2024,9,17.0,0,Williams,Williams Racing,1240,,72.94117647058823,620.0
+2024,10,4.0,0,Sauber,Kick Sauber,1200,,300.0,1200.0

@@ -72,18 +72,42 @@ def analyze_performance_vs_valuation() -> pd.DataFrame:
     valuations = load_team_valuations()
 
     team_map = {
+        # Ferrari
         "ferrari": "Ferrari",
+        # Mercedes
         "mercedesamgpetronas": "Mercedes-AMG Petronas",
         "mercedes": "Mercedes-AMG Petronas",
+        # Red Bull
         "redbull": "Red Bull Racing",
         "redbullracing": "Red Bull Racing",
+        # McLaren
         "mclaren": "McLaren Racing",
         "mclarenracing": "McLaren Racing",
+        # Alpine (API uses "alpinefteam", valuation CSV uses "Alpine F1 Team")
         "alpinef1team": "Alpine F1 Team",
+        "alpinefteam": "Alpine F1 Team",
+        # Aston Martin (API truncates to "astonmartinf", valuation uses "Aston Martin F1")
         "astonmartinf1": "Aston Martin F1",
+        "astonmartinf": "Aston Martin F1",
         "astonmartin": "Aston Martin F1",
+        # Williams
         "williamsracing": "Williams Racing",
         "williams": "Williams Racing",
+        # AlphaTauri / RB (2023 API name "alphatauri", valuation CSV "AlphaTauri / RB")
+        "alphatauri": "AlphaTauri / RB",
+        "alphataurirb": "AlphaTauri / RB",
+        # RB F1 Team (2024 API name "rbfteam", valuation CSV "RB (AlphaTauri)")
+        "rbfteam": "RB (AlphaTauri)",
+        "rbalphatauri": "RB (AlphaTauri)",
+        # Alfa Romeo / Sauber (2023 API name "alfaromeo", valuation CSV "Alfa Romeo / Sauber")
+        "alfaromeo": "Alfa Romeo / Sauber",
+        "alfaromeosauber": "Alfa Romeo / Sauber",
+        # Kick Sauber (2024 API name "sauber", valuation CSV "Kick Sauber")
+        "sauber": "Kick Sauber",
+        "kicksauber": "Kick Sauber",
+        # Haas (API uses "haasfteam")
+        "haas": "Haas F1 Team",
+        "haasfteam": "Haas F1 Team",
     }
     standings["team_key"] = (
         standings["constructor_name"].str.lower().str.replace(r"[^a-z]", "", regex=True)

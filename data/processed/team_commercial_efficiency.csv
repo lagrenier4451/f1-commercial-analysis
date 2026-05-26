@@ -5,5 +5,9 @@ Red Bull Racing,2.0,2960.0,30,redbullracing,9.2,3.0,1.0,-2.0
 McLaren Racing,2.5,2075.0,6,mclarenracing,10.1,4.0,2.5,-1.5
 Aston Martin F1,5.0,1605.0,0,astonmartinf,2.9,5.0,5.0,0.0
 Alpine F1 Team,6.0,1290.0,0,alpinefteam,2.7,6.0,6.0,0.0
-Williams Racing,8.0,970.0,0,williamsracing,2.3,7.0,7.0,0.0
-Haas F1 Team,8.5,865.0,0,haasfteam,2.5,8.0,8.0,0.0
+RB (AlphaTauri),8.0,1220.0,0,rbalphatauri,,7.0,8.0,1.0
+Kick Sauber,10.0,1200.0,0,kicksauber,,8.0,12.0,4.0
+Williams Racing,8.0,970.0,0,williamsracing,2.3,9.0,8.0,-1.0
+Haas F1 Team,8.5,865.0,0,haasfteam,2.5,10.0,10.0,0.0
+Alfa Romeo / Sauber,9.0,710.0,0,alfaromeosauber,2.0,11.5,11.0,-0.5
+AlphaTauri / RB,8.0,710.0,0,alphataurirb,2.6,11.5,8.0,-3.5
