@@ -211,10 +211,18 @@ elif section == "F1's Growth Story":
             st.plotly_chart(fig, use_container_width=True)
 
             if not f1_official.empty:
-                f1_row = f1_official.iloc[-1]
                 col1, col2 = st.columns(2)
-                col1.metric("F1 Official Instagram (2023)", f"{f1_row['instagram_followers_m']:.1f}M", "vs ~4M in 2018")
-                col2.metric("F1 Official YouTube (2023)", f"{f1_row['youtube_subscribers_m']:.1f}M")
+                # Use most recent row that actually has instagram data
+                ig_row = f1_official.dropna(subset=["instagram_followers_m"]).sort_values("year").iloc[-1] if f1_official["instagram_followers_m"].notna().any() else None
+                yt_row = f1_official.dropna(subset=["youtube_subscribers_m"]).sort_values("year").iloc[-1] if f1_official["youtube_subscribers_m"].notna().any() else None
+                if ig_row is not None:
+                    col1.metric(f"F1 Official Instagram ({int(ig_row['year'])})", f"{ig_row['instagram_followers_m']:.1f}M", "vs 5.6M in 2018")
+                else:
+                    col1.metric("F1 Official Instagram", "N/A")
+                if yt_row is not None:
+                    col2.metric(f"F1 Official YouTube ({int(yt_row['year'])})", f"{yt_row['youtube_subscribers_m']:.1f}M")
+                else:
+                    col2.metric("F1 Official YouTube", "See notes", "Combined platforms: 96M (2024)")
         else:
             missing_data_warning("Social media data")
 
@@ -261,7 +269,7 @@ elif section == "Team Commercial Value":
             year_options = sorted(perf["year"].unique(), reverse=True)
             selected_year = st.selectbox("Filter by season", ["All"] + [str(y) for y in year_options])
             display = perf if selected_year == "All" else perf[perf["year"] == int(selected_year)]
-            st.dataframe(
+            table = (
                 display[["year", "constructor_name", "position", "points", "wins", "valuation_usd_m", "revenue_usd_m"]]
                 .dropna(subset=["valuation_usd_m"])
                 .sort_values(["year", "position"])
@@ -272,10 +280,16 @@ elif section == "Team Commercial Value":
                     "wins": "Wins",
                     "valuation_usd_m": "Valuation ($M)",
                     "revenue_usd_m": "Revenue ($M)",
-                }),
-                use_container_width=True,
-                hide_index=True,
+                })
             )
+            # Replace NaN revenue with a readable dash
+            table["Revenue ($M)"] = table["Revenue ($M)"].apply(
+                lambda x: f"${x:,.0f}" if pd.notna(x) else "—"
+            )
+            table["Valuation ($M)"] = table["Valuation ($M)"].apply(
+                lambda x: f"${x:,.0f}" if pd.notna(x) else "—"
+            )
+            st.dataframe(table, use_container_width=True, hide_index=True)
         else:
             missing_data_warning("Performance vs valuation data")
 
