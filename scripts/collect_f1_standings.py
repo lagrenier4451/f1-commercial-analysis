@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 BASE_URL = "https://api.jolpi.ca/ergast/f1"
 OUTPUT_DIR = Path("data/raw/standings")
-YEARS = range(2014, 2025)  # 2014 = pre-Liberty baseline; 2024 = latest complete season
+YEARS = range(2014, 2026)  # 2014 = pre-Liberty baseline; 2025 = latest complete season
 
 
 def get_json(url: str, retries: int = 3) -> dict | None:

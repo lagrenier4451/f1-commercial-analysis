@@ -96,9 +96,11 @@ def analyze_performance_vs_valuation() -> pd.DataFrame:
         # AlphaTauri / RB (2023 API name "alphatauri", valuation CSV "AlphaTauri / RB")
         "alphatauri": "AlphaTauri / RB",
         "alphataurirb": "AlphaTauri / RB",
-        # RB F1 Team (2024 API name "rbfteam", valuation CSV "RB (AlphaTauri)")
-        "rbfteam": "RB (AlphaTauri)",
-        "rbalphatauri": "RB (AlphaTauri)",
+        # RB F1 Team / Racing Bulls (API returns "RB F1 Team" for 2024-2025; rebranded Racing Bulls 2025)
+        "rbfteam": "Racing Bulls",
+        "rbalphatauri": "Racing Bulls",
+        "racingbulls": "Racing Bulls",
+        "racingbullshondarbpt": "Racing Bulls",
         # Alfa Romeo / Sauber (2023 API name "alfaromeo", valuation CSV "Alfa Romeo / Sauber")
         "alfaromeo": "Alfa Romeo / Sauber",
         "alfaromeosauber": "Alfa Romeo / Sauber",
@@ -186,7 +188,7 @@ def compute_sponsorship_roi_metrics() -> pd.DataFrame:
     viewership = load_viewership()
     sponsorship = load_sponsorship()
 
-    races_per_year = {2018: 21, 2019: 21, 2020: 17, 2021: 22, 2022: 22, 2023: 23, 2024: 24}
+    races_per_year = {2018: 21, 2019: 21, 2020: 17, 2021: 22, 2022: 22, 2023: 23, 2024: 24, 2025: 24}
 
     viewership["races"] = viewership["year"].map(races_per_year)
     # Use global_avg_per_race_m where available (2022+); fall back to fom_unique/races for earlier years
@@ -223,7 +225,7 @@ def compute_sponsorship_roi_metrics() -> pd.DataFrame:
 # 4. Scenario Modeling
 # ---------------------------------------------------------------------------
 
-def model_valuation_scenarios(base_year: int = 2023) -> pd.DataFrame:
+def model_valuation_scenarios(base_year: int = 2025) -> pd.DataFrame:
     """
     Models how team valuations might shift based on championship outcomes.
     Uses historical correlation between position and valuation as a multiplier.

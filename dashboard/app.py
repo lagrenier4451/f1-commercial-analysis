@@ -47,7 +47,7 @@ def missing_data_warning(name: str):
 
 st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/320px-F1.svg.png", width=120)
 st.sidebar.title("F1 Commercial Analysis")
-st.sidebar.caption("2014 – 2024 | Decline, Acquisition & Resurgence")
+st.sidebar.caption("2014 – 2025 | Decline, Acquisition & Resurgence")
 
 section = st.sidebar.radio(
     "Section",
@@ -65,14 +65,14 @@ st.sidebar.caption("⚠️ Sponsorship values are estimates from public reports 
 
 if section == "Overview":
     st.title("The Business of Speed")
-    st.subheader("A Data-Driven Analysis of F1's Commercial Value (2014–2024)")
+    st.subheader("A Data-Driven Analysis of F1's Commercial Value (2014–2025)")
     st.markdown("""
     Formula 1 is no longer just a motorsport — it's a global media and marketing property.
     In 2017, Liberty Media acquired F1 from Bernie Ecclestone. What followed is one of sport's
-    most dramatic commercial turnarounds: from 352M viewers at the trough (2017) to 6.5M race-day
-    attendees, billion-dollar team valuations, and the most valuable sponsorship roster in motorsport history.
+    most dramatic commercial turnarounds: from 352M viewers at the trough (2017) to 6.7M race-day
+    attendees in 2025, billion-dollar team valuations, and the most valuable sponsorship roster in motorsport history.
 
-    This analysis covers the full arc — the decline, the acquisition, and the resurgence.
+    This analysis covers the full arc — the decline, the acquisition, and the resurgence — through to the record-breaking 2025 season.
 
     | Pillar | Question |
     |--------|----------|
@@ -160,8 +160,9 @@ elif section == "F1's Growth Story":
             - **2019**: Drive to Survive S1 on Netflix (March). US average nearly doubles YoY.
             - **2021**: Verstappen/Hamilton title fight + DtS S3 & S4. US average hits 948K — largest single-year US gain.
             - **2022**: Miami GP debuts. FOM reports 1.54B cumulative views; 70M per-race average globally.
-            - **2023**: Las Vegas GP launches. FOM states record audiences but withholds exact figure.
-            - **2024**: 6.5M total season attendance (FOM confirmed). Miami peaks at 3.1M US viewers.
+            - **2023**: Las Vegas GP launches. FOM states record cumulative audiences but withholds exact figure.
+            - **2024**: 6.5M total season attendance confirmed by FOM. Miami peaks at 3.1M US viewers.
+            - **2025**: Record season. 1.83B cumulative views (+6.8% YoY), 76.1M per-race average. US hits record 1.32M/race. 6.7M total attendance, 19/24 events sold out. Global fanbase reaches 827M.
             """)
         else:
             missing_data_warning("Viewership growth")
@@ -294,6 +295,38 @@ elif section == "Team Commercial Value":
             missing_data_warning("Performance vs valuation data")
 
     with tab2:
+        with st.expander("📐 How the Commercial Efficiency Gap is calculated", expanded=False):
+            st.markdown("""
+            ### Methodology
+
+            The **Commercial vs Performance Gap** measures whether a team's commercial standing
+            (valuation) is ahead of or behind its on-track results.
+
+            **Step 1 — Rank each team by valuation**
+            Teams are ranked 1–10 by average Sportico valuation across all available years.
+            Rank 1 = highest valued team.
+
+            **Step 2 — Rank each team by championship position**
+            Teams are ranked 1–10 by average WCC finishing position across the same years.
+            Rank 1 = best average result (lowest finishing position number).
+
+            **Step 3 — Calculate the gap**
+            ```
+            Gap = Performance Rank − Commercial Rank
+            ```
+            - **Positive gap**: The team ranks higher on track than commercially.
+              Example: A team that finishes P2 on average but is only the 5th most valuable
+              is "leaving money on the table" commercially.
+            - **Negative gap**: The team ranks higher commercially than its results justify.
+              Example: Ferrari historically finishes ~P3–4 but is the most valuable team —
+              brand heritage drives commercial value beyond pure results.
+            - **Zero / near-zero**: Commercial and performance value are roughly in line.
+
+            **Important caveat**: The gap is an average across years. A team that recently
+            improved (e.g. McLaren 2024–2025) will see their commercial rank catch up to their
+            performance rank with a lag, as valuations are published annually.
+            """)
+
         efficiency = load("team_commercial_efficiency.csv")
         if efficiency is not None:
             fig = go.Figure()
@@ -345,6 +378,37 @@ elif section == "Sponsorship ROI":
     tab1, tab2 = st.tabs(["Cross-Sport CPM", "F1 Deal Breakdown"])
 
     with tab1:
+        with st.expander("📐 How CPM is estimated here", expanded=False):
+            st.markdown("""
+            ### Methodology
+
+            **CPM (Cost Per Mille)** = cost to reach 1,000 viewers. It is the standard metric
+            used across advertising and sports marketing to compare the efficiency of different
+            media buys.
+
+            **Formula used:**
+            ```
+            CPM = (Sponsorship or Ad Buy Cost / Total Viewers Reached) × 1,000
+            ```
+
+            **For F1 specifically**, the CPM is estimated using:
+            - Average per-race global viewership (70–76M range, 2022–2025 FOM data)
+            - Reported title sponsorship deal values (e.g. LVMH at ~$150M/season, Oracle/Red Bull at ~$100M/yr)
+            - Estimated sponsor brand exposure as ~15% of total race viewership
+              (accounting for screen-time, logo visibility, and broadcast geography)
+
+            **Benchmark CPMs** for other sports are sourced from Nielsen (NFL, NBA),
+            industry reports, and SportsPro estimates. All figures are approximations —
+            actual CPMs vary significantly by:
+            - Placement type (title sponsor vs. sleeve vs. car livery)
+            - Geography (US slots cost more than emerging markets)
+            - Deal structure (race-by-race vs. season-long vs. multi-year)
+            - Activation rights included (hospitality, digital, merchandise)
+
+            **Use these numbers for directional comparison only**, not as a basis for
+            negotiating an actual sponsorship contract.
+            """)
+
         cpm = load("sports_cpm_comparison.csv")
         if cpm is not None:
             fig = px.bar(
@@ -404,6 +468,46 @@ elif section == "Scenario Modeler":
     st.title("Scenario Modeler")
     st.caption("How does championship outcome affect a team's estimated commercial value?")
 
+    with st.expander("📐 How this model works", expanded=False):
+        st.markdown("""
+        ### Methodology
+
+        This model uses **Ordinary Least Squares (OLS) linear regression** — one of the most standard
+        statistical tools — to estimate the historical relationship between a team's WCC finishing position
+        and its independently-estimated valuation (source: Sportico).
+
+        **Step 1 — Find the historical slope**
+
+        Using all available team-season data points (e.g. Ferrari P3 in 2023 at $3.13B, McLaren P1 in 2025 at $4.73B),
+        we fit a regression line: `valuation = intercept + slope × position`. The slope is negative —
+        better positions (lower numbers) correlate with higher valuations.
+
+        **Step 2 — Apply to each team**
+
+        For each scenario, the model calculates:
+        ```
+        Modeled Valuation = Base Valuation + (Scenario Position − 5) × Slope
+        ```
+        Position 5 is used as the "neutral" midfield anchor. A team projected to finish P1 gets
+        a positive delta; a team projected at P8 gets a negative delta. A floor of 50% of base
+        valuation prevents extreme downward outliers.
+
+        **What the R² means**
+
+        The R² value measures how much of the variation in team valuations is explained by championship
+        position alone. An R² of ~0.55–0.65 means position explains roughly 55–65% of valuation
+        differences — the rest comes from brand heritage, ownership, engine partnerships, and market timing.
+
+        **Limitations (important)**
+        - This is a correlation-based projection, not a causal model. Ferrari's valuation reflects
+          a century of brand equity, not just finishing position.
+        - The model assumes the past relationship between position and valuation continues to hold.
+        - Real-world valuation changes also depend on: driver contracts, regulation changes, ownership
+          deals, sponsorship negotiations, and macroeconomic conditions.
+        - All base valuations are Sportico estimates using revenue-multiple methodology — they are
+          not audited financial figures.
+        """)
+
     scenarios = load("valuation_scenarios.csv")
     if scenarios is not None:
         teams = sorted(scenarios["team"].unique())
@@ -431,6 +535,6 @@ elif section == "Scenario Modeler":
             r2 = scenarios["r_squared"].dropna().iloc[0] if "r_squared" in scenarios.columns else None
             if r2 is not None:
                 st.caption(f"Model R² = {r2:.2f} — {'strong' if r2 > 0.6 else 'moderate' if r2 > 0.3 else 'weak'} correlation between position and valuation in the dataset.")
-            st.info("This model extrapolates from historical position-to-valuation correlation. Real-world value shifts depend on many additional factors: driver star power, engine partnership quality, ownership, and market conditions.")
+            st.info("Base valuations are the most recent Sportico estimates (2025). The model extrapolates from the historical position-to-valuation correlation using all years with complete data. Real-world shifts depend on many additional factors beyond position.")
     else:
         missing_data_warning("Scenario model data")

@@ -1,13 +1,13 @@
 team_canonical,avg_championship_position,avg_valuation_usd_m,total_wins,team_key,instagram_followers_m,commercial_rank,performance_rank,commercial_vs_performance_gap
-Ferrari,2.5,3955.0,6,ferrari,10.2,1.0,2.5,1.5
-Mercedes-AMG Petronas,3.0,3320.0,4,mercedesamgpetronas,10.2,2.0,4.0,2.0
-Red Bull Racing,2.0,2960.0,30,redbullracing,9.2,3.0,1.0,-2.0
-McLaren Racing,2.5,2075.0,6,mclarenracing,10.1,4.0,2.5,-1.5
-Aston Martin F1,5.0,1605.0,0,astonmartinf,2.9,5.0,5.0,0.0
-Alpine F1 Team,6.0,1290.0,0,alpinefteam,2.7,6.0,6.0,0.0
-RB (AlphaTauri),8.0,1220.0,0,rbalphatauri,,7.0,8.0,1.0
-Kick Sauber,10.0,1200.0,0,kicksauber,,8.0,12.0,4.0
-Williams Racing,8.0,970.0,0,williamsracing,2.3,9.0,8.0,-1.0
-Haas F1 Team,8.5,865.0,0,haasfteam,2.5,10.0,10.0,0.0
+Ferrari,3.0,4770.0,6,ferrari,10.2,1.0,4.0,3.0
+Mercedes-AMG Petronas,2.6666666666666665,4173.333333333333,6,mercedesamgpetronas,10.2,2.0,3.0,1.0
+Red Bull Racing,2.3333333333333335,3413.3333333333335,38,redbullracing,9.2,3.0,2.0,-1.0
+McLaren Racing,2.0,2960.0,20,mclarenracing,10.1,4.0,1.0,-3.0
+Aston Martin F1,5.666666666666667,2070.0,0,astonmartinf,2.9,5.0,5.0,0.0
+Racing Bulls,7.0,1635.0,0,racingbulls,,6.0,6.5,0.5
+Alpine F1 Team,7.333333333333333,1553.3333333333333,0,alpinefteam,2.7,7.0,8.0,1.0
+Kick Sauber,9.5,1540.0,0,kicksauber,,8.0,12.0,4.0
+Williams Racing,7.0,1360.0,0,williamsracing,2.3,9.0,6.5,-2.5
+Haas F1 Team,8.333333333333334,1136.6666666666667,0,haasfteam,2.5,10.0,10.0,0.0
 Alfa Romeo / Sauber,9.0,710.0,0,alfaromeosauber,2.0,11.5,11.0,-0.5
-AlphaTauri / RB,8.0,710.0,0,alphataurirb,2.6,11.5,8.0,-3.5
+AlphaTauri / RB,8.0,710.0,0,alphataurirb,2.6,11.5,9.0,-2.5
