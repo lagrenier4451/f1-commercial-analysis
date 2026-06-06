@@ -1,6 +1,8 @@
 # The Business of Speed
 ### A Data-Driven Analysis of F1's Commercial Value (2014–2024)
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://f1-commercial-analysis-lag-2026.streamlit.app/)
+
 Formula 1 is no longer just a motorsport — it's a global media and marketing property. In 2017, Liberty Media acquired F1 from Bernie Ecclestone. What followed is one of sport's most dramatic commercial turnarounds: from a viewership trough of 352M (2017) to 6.5M race-day attendees, billion-dollar team valuations, and the most valuable sponsorship roster in motorsport history.
 
 This project quantifies that transformation across three analytical pillars.
