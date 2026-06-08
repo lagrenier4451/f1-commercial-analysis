@@ -11,7 +11,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
 from data_utils import TEAM_COLORS
 
@@ -167,7 +166,6 @@ elif section == "F1's Growth Story":
             missing_data_warning("Viewership growth")
 
     with tab2:
-        attendance = load("attendance_by_circuit.csv")
         raw_att = load("attendance.csv", base=Path("data/templates"))
         if raw_att is not None:
             fig = px.bar(

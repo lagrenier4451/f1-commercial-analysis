@@ -1,9 +1,14 @@
 """
-Creates manual data entry templates pre-populated with known/reported values.
-Sources are cited inline. Figures marked ESTIMATE should be verified before publishing.
+Creates initial data template stubs. IMPORTANT: This script is a legacy initialiser
+only — the actual verified, sourced CSV files are committed to the repository under
+data/templates/ and should not be overwritten.
+
+The script uses skip-if-exists logic: it will NOT overwrite any CSV that already
+exists. The data inside this file is the original placeholder/estimated data from
+project initialisation and does NOT reflect the verified figures in the actual CSVs.
 
 Run: python scripts/create_templates.py
-Outputs to: data/templates/
+Outputs to: data/templates/ (only if files do not already exist)
 """
 
 import pandas as pd
