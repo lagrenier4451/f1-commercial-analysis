@@ -70,7 +70,7 @@ def scrape_race_attendance(race_name: str, url: str) -> list[dict]:
                 try:
                     year = int(year_text[:4])
                     attendance = int("".join(filter(str.isdigit, attend_text)))
-                    if 2018 <= year <= 2024 and attendance > 0:
+                    if 2015 <= year <= 2025 and attendance > 0:
                         records.append({"race_name": race_name, "year": year, "attendance": attendance})
                 except (ValueError, TypeError):
                     continue
@@ -104,7 +104,7 @@ def validate_template():
         print(f"Template not found at {TEMPLATE_PATH}. Run create_templates.py first.")
         return
     df = pd.read_csv(TEMPLATE_PATH)
-    missing = df[df["attendance"].isna() | (df["attendance"] == 0)]
+    missing = df[df["attendance_weekend"].isna() | (df["attendance_weekend"] == 0)]
     if not missing.empty:
         print(f"  {len(missing)} rows still need attendance values:")
         print(missing[["race_name", "year"]].to_string(index=False))

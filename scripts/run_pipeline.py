@@ -39,7 +39,7 @@ def main():
 
     # Step 2: Fetch F1 API data
     if not skip_api:
-        success &= run("collect_f1_standings.py", "Step 2/4: Collecting F1 standings from Jolpica API (2018-2024)")
+        success &= run("collect_f1_standings.py", "Step 2/4: Collecting F1 standings from Jolpica API (2014-2025)")
     else:
         print("\nStep 2/4: Skipping API collection (--skip-api)")
 
@@ -53,8 +53,8 @@ def main():
     if success:
         print("Pipeline complete.")
         print("Next steps:")
-        print("  1. Open data/templates/ and fill any cells marked ESTIMATE or NEEDS DATA")
-        print("  2. Re-run: python scripts/analyze.py")
+        print("  1. Review data/templates/ — all datasets are sourced; update if newer data is available")
+        print("  2. Re-run if needed: python scripts/analyze.py")
         print("  3. Launch dashboard: streamlit run dashboard/app.py")
     else:
         print("Pipeline finished with errors. Check output above.")

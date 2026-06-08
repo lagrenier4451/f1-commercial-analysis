@@ -31,7 +31,8 @@ f1-commercial-analysis/
 │   ├── collect_attendance.py     ← Scrapes/validates race attendance data
 │   ├── create_templates.py       ← One-time template initialiser (skip-if-exists)
 │   ├── analyze.py                ← Core analysis: growth, valuations, ROI, scenarios
-│   └── data_utils.py             ← Shared loading & preprocessing utilities
+│   ├── data_utils.py             ← Shared loading & preprocessing utilities
+│   └── run_pipeline.py           ← Runs the full pipeline end-to-end (optional convenience script)
 ├── dashboard/
 │   └── app.py            ← Streamlit interactive dashboard
 ├── report/               ← Written report (in progress)

@@ -1,6 +1,6 @@
 """
 Collects F1 constructor standings, driver standings, and race results
-from the Jolpica API (community Ergast mirror) for 2018-2024.
+from the Jolpica API (community Ergast mirror) for 2014-2025.
 
 Run: python scripts/collect_f1_standings.py
 Outputs to: data/raw/standings/
