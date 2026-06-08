@@ -84,10 +84,6 @@ if section == "Overview":
     viewership = load("viewership_growth.csv")
     if viewership is not None:
         col1, col2, col3, col4 = st.columns(4)
-        first = viewership["fom_unique_viewers_m"].dropna().iloc[0]
-        last = viewership["fom_unique_viewers_m"].dropna().iloc[-1]
-        growth = ((last - first) / first * 100)
-
         peak = viewership["fom_unique_viewers_m"].dropna().max()
         col1.metric("Viewership (unique viewer era)", f"352M trough → {peak:.0f}M peak", "2017 trough to 2018 peak; FOM changed methodology after 2021")
         col2.metric("Races Per Season (2025)", "24", "+5 vs 2014")
@@ -113,6 +109,7 @@ if section == "Overview":
         fig.add_vline(x=2017, line_dash="dash", line_color="gray", annotation_text="Liberty Media acquisition", annotation_position="top right")
         fig.update_layout(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(fig, use_container_width=True)
+        st.caption("Chart shows 2014–2021 only. From 2022, FOM switched to cumulative reporting (total views across all races) — a different methodology not directly comparable to the unique-viewer series above. See F1's Growth Story → Viewership for full context.")
     else:
         missing_data_warning("Viewership growth data")
 
@@ -491,9 +488,10 @@ elif section == "Scenario Modeler":
 
         **What the R² means**
 
-        The R² value measures how much of the variation in team valuations is explained by championship
-        position alone. An R² of ~0.55–0.65 means position explains roughly 55–65% of valuation
-        differences — the rest comes from brand heritage, ownership, engine partnerships, and market timing.
+        The R² value (shown below the chart) measures how much of the variation in team valuations
+        is explained by championship position alone. The current model R² is shown live beneath the
+        chart. Typically in this dataset position explains roughly 40–60% of valuation differences —
+        the rest comes from brand heritage, ownership, engine partnerships, and market timing.
 
         **Limitations (important)**
         - This is a correlation-based projection, not a causal model. Ferrari's valuation reflects

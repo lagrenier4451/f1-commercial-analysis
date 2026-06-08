@@ -1,12 +1,12 @@
-year_reported,team_or_entity,sponsor,deal_type,annual_value_usd_m,confidence,source,notes,implied_exposure_per_race_m_viewers,races_in_year,implied_season_exposure_m_viewers,implied_cpm
-2022,Red Bull Racing,Oracle,Title Sponsor,100.0,HIGH,PlanetF1 / SportsPro / Sportico,5-year deal 2022-2027. Most cited at ~$100M/yr; RTR Sports noted ~$110M as of 2026.,5.938994143111789,22,130.65787114845935,765.3576406918149
-2022,Mercedes-AMG Petronas,Petronas,Title Sponsor,75.0,HIGH,Forbes / SportsPro,Renegotiated 2022; Forbes cited $75M/yr. Sportico confirmed 'more than $70M/yr'.,5.938994143111789,22,130.65787114845935,574.0182305188612
-2024,Ferrari,HP,Title Sponsor,90.0,HIGH,Ferrari Press Release / SportsPro,Scuderia Ferrari HP from 2024 season. Widely reported ~$90M/yr; some outlets cite $100M.,5.938994143111789,24,142.53585943468295,631.4200535707473
-2022,Ferrari,Shell,Principal Partner,40.0,MED,SportBusiness.com,Long-term technical and commercial partnership; $40M/yr reported by SportBusiness.,5.938994143111789,22,130.65787114845935,306.14305627672593
-2023,McLaren Racing,Google Chrome,Principal Partner,40.0,MED,Multiple industry reports,Chrome branding on MCL cars from 2023; ~$40M/yr cited by analysts. Exact figure undisclosed.,5.938994143111789,23,136.59686529157116,292.8324886125204
-2023,Aston Martin F1,Aramco,Title Sponsor,30.0,MED,GlobalData 2023,Team renamed Aston Martin Aramco F1 Team. $30M/yr reported by GlobalData.,5.938994143111789,23,136.59686529157116,219.62436645939033
-2023,Alfa Romeo / Sauber,Stake,Title Sponsor,33.0,MED,Sydney Morning Herald,$100M across three seasons reported by SMH averages ~$33M/yr.,5.938994143111789,23,136.59686529157116,241.58680310532938
-2022,Alpine F1 Team,BWT,Title Sponsor,25.0,MED,Industry reports Feb 2022 announcement,BWT title sponsorship from February 2022.,5.938994143111789,22,130.65787114845935,191.33941017295373
-2022,Haas F1 Team,MoneyGram,Title Sponsor,20.0,MED,Pre-2022 US GP announcement,Announced ahead of 2022 United States Grand Prix; widely reported at ~$20M/yr.,5.938994143111789,22,130.65787114845935,153.07152813836296
-2023,Williams Racing,Duracell,Principal Partner,6.0,MED,GlobalData 2023,$6M/yr reported by GlobalData.,5.938994143111789,23,136.59686529157116,43.924873291878065
-2022,McLaren Racing,OKX,Principal Partner,,LOW,Multiple reports,Characterised as hundreds of millions across multiple seasons; no verified annual figure disclosed.,5.938994143111789,22,130.65787114845935,
+year_reported,team_or_entity,sponsor,deal_type,annual_value_usd_m,confidence,source,notes,per_race_viewers_m,implied_exposure_per_race_m_viewers,races_in_year,implied_season_exposure_m_viewers,implied_cpm
+2022,Red Bull Racing,Oracle,Title Sponsor,100.0,HIGH,PlanetF1 / SportsPro / Sportico,5-year deal 2022-2027. Most cited at ~$100M/yr; RTR Sports noted ~$110M as of 2026.,70.0,10.5,22,231.0,432.9004329004329
+2022,Mercedes-AMG Petronas,Petronas,Title Sponsor,75.0,HIGH,Forbes / SportsPro,Renegotiated 2022; Forbes cited $75M/yr. Sportico confirmed 'more than $70M/yr'.,70.0,10.5,22,231.0,324.6753246753247
+2024,Ferrari,HP,Title Sponsor,90.0,HIGH,Ferrari Press Release / SportsPro,Scuderia Ferrari HP from 2024 season. Widely reported ~$90M/yr; some outlets cite $100M.,74.06666666666666,11.11,24,266.64,337.53375337533754
+2022,Ferrari,Shell,Principal Partner,40.0,MED,SportBusiness.com,Long-term technical and commercial partnership; $40M/yr reported by SportBusiness.,70.0,10.5,22,231.0,173.16017316017317
+2023,McLaren Racing,Google Chrome,Principal Partner,40.0,MED,Multiple industry reports,Chrome branding on MCL cars from 2023; ~$40M/yr cited by analysts. Exact figure undisclosed.,72.03333333333333,10.805,23,248.515,160.95607910991288
+2023,Aston Martin F1,Aramco,Title Sponsor,30.0,MED,GlobalData 2023,Team renamed Aston Martin Aramco F1 Team. $30M/yr reported by GlobalData.,72.03333333333333,10.805,23,248.515,120.71705933243466
+2023,Alfa Romeo / Sauber,Stake,Title Sponsor,33.0,MED,Sydney Morning Herald,$100M across three seasons reported by SMH averages ~$33M/yr.,72.03333333333333,10.805,23,248.515,132.78876526567814
+2022,Alpine F1 Team,BWT,Title Sponsor,25.0,MED,Industry reports Feb 2022 announcement,BWT title sponsorship from February 2022.,70.0,10.5,22,231.0,108.22510822510823
+2022,Haas F1 Team,MoneyGram,Title Sponsor,20.0,MED,Pre-2022 US GP announcement,Announced ahead of 2022 United States Grand Prix; widely reported at ~$20M/yr.,70.0,10.5,22,231.0,86.58008658008659
+2023,Williams Racing,Duracell,Principal Partner,6.0,MED,GlobalData 2023,$6M/yr reported by GlobalData.,72.03333333333333,10.805,23,248.515,24.143411866486932
+2022,McLaren Racing,OKX,Principal Partner,,LOW,Multiple reports,Characterised as hundreds of millions across multiple seasons; no verified annual figure disclosed.,70.0,10.5,22,231.0,

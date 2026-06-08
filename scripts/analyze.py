@@ -213,9 +213,24 @@ def compute_sponsorship_roi_metrics() -> pd.DataFrame:
     cpm_df = pd.DataFrame(cpm_data)
     cpm_df.to_csv(PROCESSED_DIR / "sports_cpm_comparison.csv", index=False)
 
+    # Build year-specific per-race viewership lookup so each deal uses contemporaneous data
+    yr_viewers = {}
+    for _, vrow in viewership.iterrows():
+        yr = int(vrow["year"])
+        if pd.notna(vrow["global_avg_per_race_m"]):
+            yr_viewers[yr] = vrow["global_avg_per_race_m"]
+        elif pd.notna(vrow["fom_unique_viewers_m"]) and pd.notna(vrow.get("races")):
+            yr_viewers[yr] = vrow["fom_unique_viewers_m"] / vrow["races"]
+    # For years without direct data (2023, 2024), interpolate linearly between 2022 and 2025
+    if 2022 in yr_viewers and 2025 in yr_viewers:
+        yr_viewers[2023] = yr_viewers.get(2023, yr_viewers[2022] + (yr_viewers[2025] - yr_viewers[2022]) * 1 / 3)
+        yr_viewers[2024] = yr_viewers.get(2024, yr_viewers[2022] + (yr_viewers[2025] - yr_viewers[2022]) * 2 / 3)
+
     team_deals = sponsorship[sponsorship["team_or_entity"] != "Formula 1 (FOM)"].copy()
-    team_deals["implied_exposure_per_race_m_viewers"] = avg_viewers * 0.15
-    # Season-level CPM: exposure × races in the deal year (not just per-race)
+    # Use year-specific per-race viewers; fall back to flat avg only if year is truly unmapped
+    team_deals["per_race_viewers_m"] = team_deals["year_reported"].map(yr_viewers).fillna(avg_viewers)
+    team_deals["implied_exposure_per_race_m_viewers"] = team_deals["per_race_viewers_m"] * 0.15
+    # Season-level CPM: exposure × races in the deal year
     team_deals["races_in_year"] = team_deals["year_reported"].map(races_per_year).fillna(23)
     team_deals["implied_season_exposure_m_viewers"] = (
         team_deals["implied_exposure_per_race_m_viewers"] * team_deals["races_in_year"]

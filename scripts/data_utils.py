@@ -10,6 +10,8 @@ RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 TEMPLATES_DIR = DATA_DIR / "templates"
 
+# NOTE: canonical team name mappings for the analysis pipeline live in analyze.py (team_map).
+# This alias dict is kept for reference only and is not used in the main pipeline.
 TEAM_ALIASES = {
     "red_bull": "Red Bull Racing",
     "mercedes": "Mercedes-AMG Petronas",
@@ -17,10 +19,10 @@ TEAM_ALIASES = {
     "mclaren": "McLaren Racing",
     "alpine": "Alpine F1 Team",
     "aston_martin": "Aston Martin F1",
-    "alphatauri": "AlphaTauri / RB",
-    "rb": "AlphaTauri / RB",
-    "alfa": "Alfa Romeo / Sauber",
-    "sauber": "Alfa Romeo / Sauber",
+    "alphatauri": "AlphaTauri / RB",   # 2023 name
+    "racing_bulls": "Racing Bulls",     # 2024-2025 rebrand
+    "alfa": "Alfa Romeo / Sauber",      # 2023 name
+    "kick_sauber": "Kick Sauber",       # 2024-2025 name
     "haas": "Haas F1 Team",
     "williams": "Williams Racing",
 }
@@ -80,42 +82,11 @@ def load_social_media() -> pd.DataFrame:
     return pd.read_csv(TEMPLATES_DIR / "social_media.csv")
 
 
-def build_team_performance_profile() -> pd.DataFrame:
-    """
-    Merges constructor standings with valuation data to create
-    a combined performance + commercial profile per team per year.
-    """
-    standings = load_constructor_standings()
-    valuations = load_team_valuations()
-
-    standings["team_normalized"] = standings["constructor_name"].str.lower().str.replace(r"[^a-z]", "", regex=True)
-    valuations["team_normalized"] = valuations["team"].str.lower().str.replace(r"[^a-z]", "", regex=True)
-
-    merged = pd.merge(standings, valuations, on=["year", "team_normalized"], how="left")
-    return merged
+# NOTE: build_team_performance_profile is not used in the main analysis pipeline.
+# It uses a naive name normalization that lacks the full team_map from analyze.py,
+# so it would produce incorrect merges for Alpine, Aston Martin, AlphaTauri/RB,
+# Alfa Romeo/Sauber, Racing Bulls, Kick Sauber, and Haas. Do not call this function
+# without first applying the canonical team_map from analyze.py.
 
 
-def compute_commercial_index(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Computes a normalized commercial index combining valuation,
-    social following, and sponsorship value.
-    Useful for ranking teams by commercial weight.
-    """
-    social = load_social_media()
-    social = social[social["team"] != "Formula 1 (official)"]
-    social["team_normalized"] = social["team"].str.lower().str.replace(r"[^a-z]", "", regex=True)
-
-    df = df.copy()
-    if "team_normalized" not in df.columns:
-        df["team_normalized"] = df["constructor_name"].str.lower().str.replace(r"[^a-z]", "", regex=True)
-
-    df = pd.merge(df, social[["year", "team_normalized", "instagram_followers_m"]], on=["year", "team_normalized"], how="left")
-
-    if "valuation_usd_m" in df.columns and "instagram_followers_m" in df.columns:
-        from sklearn.preprocessing import MinMaxScaler  # optional dependency
-        scaler = MinMaxScaler()
-        cols = ["valuation_usd_m", "instagram_followers_m"]
-        available = [c for c in cols if c in df.columns and df[c].notna().any()]
-        if available:
-            df["commercial_index"] = scaler.fit_transform(df[available].fillna(0)).mean(axis=1)
-    return df
+# compute_commercial_index removed: was dead code with an undeclared sklearn dependency.
