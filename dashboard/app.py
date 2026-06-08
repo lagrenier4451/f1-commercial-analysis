@@ -56,7 +56,7 @@ section = st.sidebar.radio(
 )
 
 st.sidebar.divider()
-st.sidebar.caption("Data sources: FOM, Forbes, SportsPro, Jolpica API")
+st.sidebar.caption("Data sources: FOM, Sportico, SportsPro, Jolpica API")
 st.sidebar.caption("⚠️ Sponsorship values are estimates from public reports unless noted.")
 
 # ---------------------------------------------------------------------------
@@ -88,8 +88,9 @@ if section == "Overview":
         last = viewership["fom_unique_viewers_m"].dropna().iloc[-1]
         growth = ((last - first) / first * 100)
 
-        col1.metric("Viewership Turnaround", f"{last:.0f}M → {viewership['fom_unique_viewers_m'].dropna().max():.0f}M", f"Trough 352M (2017) → peak {viewership['fom_unique_viewers_m'].dropna().max():.0f}M")
-        col2.metric("Races Per Season (2024)", "24", "+5 vs 2014")
+        peak = viewership["fom_unique_viewers_m"].dropna().max()
+        col1.metric("Viewership (unique viewer era)", f"352M trough → {peak:.0f}M peak", "2017 trough to 2018 peak; FOM changed methodology after 2021")
+        col2.metric("Races Per Season (2025)", "24", "+5 vs 2014")
 
         sponsorship = load("sponsorship_roi.csv")
         if sponsorship is not None:
@@ -99,7 +100,7 @@ if section == "Overview":
         valuation = load("performance_vs_valuation.csv")
         if valuation is not None:
             max_val = valuation["valuation_usd_m"].max()
-            col4.metric("Highest Team Valuation", f"${max_val/1000:.1f}B", "Ferrari (Forbes est.)")
+            col4.metric("Highest Team Valuation", f"${max_val/1000:.1f}B", "Ferrari (Sportico Nov 2025)")
 
         st.divider()
         fig = px.area(
@@ -157,8 +158,9 @@ elif section == "F1's Growth Story":
             - **2014–2017**: F1 sheds 138M viewers (-28%) as pay-TV migration restricts free-to-air access across Europe.
             - **2017**: Liberty Media acquisition — 352M viewers, the commercial trough.
             - **2018**: First full Liberty year. Viewer count jumps to 490M (+39% YoY) as distribution deals improve.
-            - **2019**: Drive to Survive S1 on Netflix (March). US average nearly doubles YoY.
-            - **2021**: Verstappen/Hamilton title fight + DtS S3 & S4. US average hits 948K — largest single-year US gain.
+            - **2019**: Drive to Survive S1 on Netflix (March). US average +25% YoY (539K → 672K) via new ABC simulcast deal.
+            - **2020**: COVID-shortened 17-race calendar (17 races). US average dips to 608K (-10% YoY) as no fan attendance suppressed broadcast interest; global unique viewers fall to 433M.
+            - **2021**: Verstappen/Hamilton title fight + DtS S3 & S4. US average jumps to 948K (+56% YoY) — largest single-year US gain on record.
             - **2022**: Miami GP debuts. FOM reports 1.54B cumulative views; 70M per-race average globally.
             - **2023**: Las Vegas GP launches. FOM states record cumulative audiences but withholds exact figure.
             - **2024**: 6.5M total season attendance confirmed by FOM. Miami peaks at 3.1M US viewers.
@@ -203,7 +205,7 @@ elif section == "F1's Growth Story":
                 team_social.sort_values("instagram_followers_m", ascending=True),
                 x="instagram_followers_m", y="team",
                 orientation="h",
-                title="Instagram Followers by Team (2023, Millions)",
+                title="Instagram Followers by Team — 2023 Blinkfire Data (most recent per-team breakdown available)",
                 labels={"instagram_followers_m": "Followers (M)", "team": ""},
                 color="team",
                 color_discrete_map=TEAM_COLORS,
@@ -310,13 +312,9 @@ elif section == "Team Commercial Value":
             ```
             Gap = Performance Rank − Commercial Rank
             ```
-            - **Positive gap**: The team ranks higher on track than commercially.
-              Example: A team that finishes P2 on average but is only the 5th most valuable
-              is "leaving money on the table" commercially.
-            - **Negative gap**: The team ranks higher commercially than its results justify.
-              Example: Ferrari historically finishes ~P3–4 but is the most valuable team —
-              brand heritage drives commercial value beyond pure results.
-            - **Zero / near-zero**: Commercial and performance value are roughly in line.
+            - **Positive gap**: The team's commercial rank is *better* (lower number) than its performance rank. The team is valued more highly than its on-track results alone would justify. Example: Ferrari finishes ~P3–4 but is ranked #1 commercially — brand heritage drives valuation beyond results.
+            - **Negative gap**: The team's on-track performance rank is *better* than its commercial rank. The team performs above its commercial standing — results not yet fully reflected in valuation. Example: a team that consistently finishes P2 but is ranked only 5th commercially is undervalued relative to results.
+            - **Zero / near-zero**: Commercial and performance standing are roughly in line.
 
             **Important caveat**: The gap is an average across years. A team that recently
             improved (e.g. McLaren 2024–2025) will see their commercial rank catch up to their
@@ -333,7 +331,7 @@ elif section == "Team Commercial Value":
                 marker_color="#E8002D",
             ))
             fig.add_trace(go.Bar(
-                name="Avg Championship Position",
+                name="Performance Rank",
                 x=efficiency["team_canonical"],
                 y=efficiency["performance_rank"],
                 marker_color="#1E41FF",
@@ -428,6 +426,7 @@ elif section == "Sponsorship ROI":
             F1's global distribution makes it competitive on CPM despite higher total deal values.
             Note: CPM figures are industry estimates and vary significantly by placement, market, and deal structure.
             """)
+            st.caption("⚠️ The CPM figures on this chart are **broadcast advertising rates** (buying airtime). The implied CPMs in the Deal Breakdown tab are **title sponsorship rates** — a fundamentally different product that includes logo rights, hospitality, and activation. They are not directly comparable.")
             st.dataframe(cpm[["sport", "cpm_usd", "avg_viewers_per_event_m", "source"]], use_container_width=True, hide_index=True)
         else:
             missing_data_warning("CPM comparison data")
