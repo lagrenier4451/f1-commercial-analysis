@@ -34,8 +34,9 @@ def analyze_viewership_growth() -> pd.DataFrame:
     df["us_viewers_yoy_change_k"] = df["us_avg_per_race_k"].diff()
     # Unique-viewer series only available 2018-2021; use where present
     if df["fom_unique_viewers_m"].notna().any():
+        base_year = df.loc[df["fom_unique_viewers_m"].notna(), "year"].iloc[0]
         base = df.loc[df["fom_unique_viewers_m"].notna(), "fom_unique_viewers_m"].iloc[0]
-        df["unique_viewers_growth_pct_from_2018"] = (
+        df[f"unique_viewers_growth_pct_from_{base_year}"] = (
             (df["fom_unique_viewers_m"] / base - 1) * 100
         )
     df.to_csv(PROCESSED_DIR / "viewership_growth.csv", index=False)
@@ -128,7 +129,9 @@ def analyze_performance_vs_valuation() -> pd.DataFrame:
     )
 
     merged["valuation_per_championship_point"] = merged["valuation_usd_m"] / merged["points"].replace(0, np.nan)
-    merged["commercial_to_performance_ratio"] = merged["valuation_usd_m"] / (11 - merged["position"])
+    # valuation per inverted-position point: higher = more value relative to grid standing
+    # formula: valuation / (11 - position) so P1 scores /10, P10 scores /1
+    merged["valuation_per_inverted_position"] = merged["valuation_usd_m"] / (11 - merged["position"])
 
     merged.to_csv(PROCESSED_DIR / "performance_vs_valuation.csv", index=False)
     print(f"  Performance vs valuation analysis saved ({len(merged)} rows)")
@@ -212,8 +215,13 @@ def compute_sponsorship_roi_metrics() -> pd.DataFrame:
 
     team_deals = sponsorship[sponsorship["team_or_entity"] != "Formula 1 (FOM)"].copy()
     team_deals["implied_exposure_per_race_m_viewers"] = avg_viewers * 0.15
+    # Season-level CPM: exposure × races in the deal year (not just per-race)
+    team_deals["races_in_year"] = team_deals["year_reported"].map(races_per_year).fillna(23)
+    team_deals["implied_season_exposure_m_viewers"] = (
+        team_deals["implied_exposure_per_race_m_viewers"] * team_deals["races_in_year"]
+    )
     team_deals["implied_cpm"] = (team_deals["annual_value_usd_m"] * 1e6) / (
-        team_deals["implied_exposure_per_race_m_viewers"] * 1e6 / 1000
+        team_deals["implied_season_exposure_m_viewers"] * 1e6 / 1000
     )
 
     team_deals.to_csv(PROCESSED_DIR / "sponsorship_roi.csv", index=False)
@@ -250,13 +258,15 @@ def model_valuation_scenarios(base_year: int = 2025) -> pd.DataFrame:
             if pd.notna(row["valuation_usd_m"]):
                 delta = (position - 5) * position_slope
                 adjusted = row["valuation_usd_m"] + delta
+                # Apply floor at 50% of base, then recompute change using the floored value
+                modeled = max(adjusted, row["valuation_usd_m"] * 0.5)
                 scenarios.append({
                     "team": row["team"],
                     "base_valuation_usd_m": row["valuation_usd_m"],
                     "scenario": scenario_label,
                     "championship_position": position,
-                    "modeled_valuation_usd_m": max(adjusted, row["valuation_usd_m"] * 0.5),
-                    "valuation_change_usd_m": adjusted - row["valuation_usd_m"],
+                    "modeled_valuation_usd_m": modeled,
+                    "valuation_change_usd_m": modeled - row["valuation_usd_m"],
                     "r_squared": r_squared,
                 })
 

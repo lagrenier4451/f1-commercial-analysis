@@ -1,4 +1,4 @@
-year,fom_unique_viewers_m,global_avg_per_race_m,global_cumulative_viewers_m,us_avg_per_race_k,source,notes,us_viewers_yoy_change_k,unique_viewers_growth_pct_from_2018
+year,fom_unique_viewers_m,global_avg_per_race_m,global_cumulative_viewers_m,us_avg_per_race_k,source,notes,us_viewers_yoy_change_k,unique_viewers_growth_pct_from_2014
 2014,425.0,,,,Formulapedia (citing FOM),Pre-Liberty era. Hamilton/Mercedes dominance. Peak pay-TV migration in key markets.,,0.0
 2015,400.0,,,,Formulapedia (citing FOM),Continued decline. 19-race calendar. Mexico GP returns after 23-year absence.,,-5.882352941176472
 2016,390.0,,,,Formulapedia (citing FOM),21-race calendar. Rosberg/Hamilton rivalry. Consistent decline trend.,,-8.235294117647063
@@ -8,6 +8,6 @@ year,fom_unique_viewers_m,global_avg_per_race_m,global_cumulative_viewers_m,us_a
 2020,433.0,,,608.0,Formulapedia (citing FOM); US via Motorsport.com,Zero fans at circuits. Shortened 17-race calendar depresses global total. US still grew from DtS S2.,-64.0,1.8823529411764683
 2021,445.0,,,948.0,Formulapedia (citing FOM); US via Motorsport.com,Verstappen/Hamilton title fight. DtS S3 and S4 aired. US +56% YoY — largest single-year US gain on record.,340.0,4.705882352941182
 2022,,70.0,1540.0,1210.0,FOM via Autoracing1 / CEO Domenicali; US via ESPN Press Room,FOM changed to cumulative reporting (1.54B across 22 races) and per-race avg (70M globally). Not comparable to unique-viewer figures above. Miami GP debut. US +28% YoY.,262.0,
-2023,,,,,,FOM stated record cumulative audiences but did not publish a verified figure. Las Vegas GP debut. US -9% (1.1M avg) per Motorsport.com / TheJudge13.,,
-2024,,,,1100.0,Motorsport.com / Blackbook Motorsport,ESPN final season. Miami peaked at 3.1M US viewers. Total season attendance 6.5M confirmed by FOM.,,
-2025,,76.1,1830.0,1320.0,FOM 2025 Season Review / ESPN-Nielsen,Record season: 1.83B cumulative views across 24 races (6.8% YoY). US record 1.32M avg per race on ESPN. Global fanbase 827M (+12% YoY). 19 of 24 events sold out.,220.0,
+2023,,,,1110.0,ESPN Press Room / Motorsport.com,FOM stated record cumulative audiences but did not publish a verified global figure. Las Vegas GP debut. US 1.11M avg per ESPN Press Room data.,-100.0,
+2024,,,,1100.0,Motorsport.com / Blackbook Motorsport,US 1.10M avg on ESPN. Miami peaked at 3.1M US viewers. Total season attendance 6.5M confirmed by FOM.,-10.0,
+2025,,76.1,1830.0,1320.0,FOM 2025 Season Review / ESPN-Nielsen,Record season: 1.83B cumulative views across 24 races (6.8% YoY). US record 1.32M avg per race on ESPN (ESPN holds US rights through 2025; Apple TV+ takes over from 2026). Global fanbase 827M (+12% YoY). 19 of 24 events sold out.,220.0,

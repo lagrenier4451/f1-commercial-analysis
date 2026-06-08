@@ -175,7 +175,7 @@ elif section == "F1's Growth Story":
                 raw_att.dropna(subset=["attendance_weekend"]).sort_values("attendance_weekend", ascending=False),
                 x="race_name", y="attendance_weekend",
                 color="country",
-                title="Race Weekend Attendance by Circuit (3-Day Total)",
+                title="Race Weekend Attendance by Event (3-Day Total) — some events share a circuit across years",
                 labels={"attendance_weekend": "Attendance", "race_name": "Race"},
             )
             fig.update_xaxes(tickangle=-45)
@@ -271,7 +271,7 @@ elif section == "Team Commercial Value":
             selected_year = st.selectbox("Filter by season", ["All"] + [str(y) for y in year_options])
             display = perf if selected_year == "All" else perf[perf["year"] == int(selected_year)]
             table = (
-                display[["year", "constructor_name", "position", "points", "wins", "valuation_usd_m", "revenue_usd_m"]]
+                display[["year", "constructor_name", "position", "points", "wins", "valuation_usd_m"]]
                 .dropna(subset=["valuation_usd_m"])
                 .sort_values(["year", "position"])
                 .rename(columns={
@@ -280,16 +280,12 @@ elif section == "Team Commercial Value":
                     "points": "Points",
                     "wins": "Wins",
                     "valuation_usd_m": "Valuation ($M)",
-                    "revenue_usd_m": "Revenue ($M)",
                 })
-            )
-            # Replace NaN revenue with a readable dash
-            table["Revenue ($M)"] = table["Revenue ($M)"].apply(
-                lambda x: f"${x:,.0f}" if pd.notna(x) else "—"
             )
             table["Valuation ($M)"] = table["Valuation ($M)"].apply(
                 lambda x: f"${x:,.0f}" if pd.notna(x) else "—"
             )
+            st.caption("Revenue figures are not publicly available from Sportico; valuation uses revenue-multiple methodology.")
             st.dataframe(table, use_container_width=True, hide_index=True)
         else:
             missing_data_warning("Performance vs valuation data")
@@ -391,11 +387,13 @@ elif section == "Sponsorship ROI":
             CPM = (Sponsorship or Ad Buy Cost / Total Viewers Reached) × 1,000
             ```
 
-            **For F1 specifically**, the CPM is estimated using:
+            **For F1 specifically**, the implied CPM is estimated using:
             - Average per-race global viewership (70–76M range, 2022–2025 FOM data)
             - Reported title sponsorship deal values (e.g. LVMH at ~$150M/season, Oracle/Red Bull at ~$100M/yr)
-            - Estimated sponsor brand exposure as ~15% of total race viewership
+            - Estimated sponsor brand exposure as ~15% of total race viewership per race
               (accounting for screen-time, logo visibility, and broadcast geography)
+            - Multiplied by races in the deal year to give a **season-level** total exposure figure
+            - Season CPM = Annual Deal Value ÷ (Per-Race Exposure × Races) × 1,000
 
             **Benchmark CPMs** for other sports are sourced from Nielsen (NFL, NBA),
             industry reports, and SportsPro estimates. All figures are approximations —
