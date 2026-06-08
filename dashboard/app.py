@@ -91,7 +91,7 @@ if section == "Overview":
         sponsorship = load("sponsorship_roi.csv")
         if sponsorship is not None:
             max_deal = sponsorship["annual_value_usd_m"].max()
-            col3.metric("Largest Team Deal (est.)", f"${max_deal:.0f}M/yr", "HP × Ferrari 2024")
+            col3.metric("Largest Team Deal (est.)", f"${max_deal:.0f}M/yr", "Oracle × Red Bull Racing 2022")
 
         valuation = load("performance_vs_valuation.csv")
         if valuation is not None:
@@ -152,7 +152,7 @@ elif section == "F1's Growth Story":
 
             st.markdown("**Key inflection points:**")
             st.markdown("""
-            - **2014–2017**: F1 sheds 138M viewers (-28%) as pay-TV migration restricts free-to-air access across Europe.
+            - **2014–2017**: F1 sheds 73M viewers (-17%) as pay-TV migration restricts free-to-air access across Europe.
             - **2017**: Liberty Media acquisition — 352M viewers, the commercial trough.
             - **2018**: First full Liberty year. Viewer count jumps to 490M (+39% YoY) as distribution deals improve.
             - **2019**: Drive to Survive S1 on Netflix (March). US average +25% YoY (539K → 672K) via new ABC simulcast deal.
@@ -298,11 +298,13 @@ elif section == "Team Commercial Value":
             (valuation) is ahead of or behind its on-track results.
 
             **Step 1 — Rank each team by valuation**
-            Teams are ranked 1–10 by average Sportico valuation across all available years.
+            Teams are ranked by average Sportico valuation across all available years (2023–2025).
+            Teams that changed name mid-period (e.g. AlphaTauri → Racing Bulls, Alfa Romeo → Kick Sauber)
+            are treated as separate entities, so the ranking covers 12 entities not 10.
             Rank 1 = highest valued team.
 
             **Step 2 — Rank each team by championship position**
-            Teams are ranked 1–10 by average WCC finishing position across the same years.
+            Teams are ranked by average WCC finishing position across the same years.
             Rank 1 = best average result (lowest finishing position number).
 
             **Step 3 — Calculate the gap**

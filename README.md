@@ -1,9 +1,9 @@
 # The Business of Speed
-### A Data-Driven Analysis of F1's Commercial Value (2014–2024)
+### A Data-Driven Analysis of F1's Commercial Value (2014–2025)
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://f1-commercial-analysis-lag-2026.streamlit.app/)
 
-Formula 1 is no longer just a motorsport — it's a global media and marketing property. In 2017, Liberty Media acquired F1 from Bernie Ecclestone. What followed is one of sport's most dramatic commercial turnarounds: from a viewership trough of 352M (2017) to 6.5M race-day attendees, billion-dollar team valuations, and the most valuable sponsorship roster in motorsport history.
+Formula 1 is no longer just a motorsport — it's a global media and marketing property. In 2017, Liberty Media acquired F1 from Bernie Ecclestone. What followed is one of sport's most dramatic commercial turnarounds: from a viewership trough of 352M (2017) to 6.7M race-day attendees in 2025, billion-dollar team valuations, and the most valuable sponsorship roster in motorsport history.
 
 This project quantifies that transformation across three analytical pillars.
 
@@ -27,7 +27,7 @@ f1-commercial-analysis/
 │   ├── templates/        ← Verified, sourced datasets (viewership, attendance, valuations, etc.)
 │   └── raw/              ← API-pulled race data (generated, not committed)
 ├── scripts/
-│   ├── collect_f1_standings.py   ← Pulls constructor/driver standings from Jolpica API (2014-2024)
+│   ├── collect_f1_standings.py   ← Pulls constructor/driver standings from Jolpica API (2014-2025)
 │   ├── collect_attendance.py     ← Scrapes/validates race attendance data
 │   ├── create_templates.py       ← One-time template initialiser (skip-if-exists)
 │   ├── analyze.py                ← Core analysis: growth, valuations, ROI, scenarios
@@ -45,10 +45,10 @@ f1-commercial-analysis/
 | Dataset | Source | Confidence |
 |---------|--------|------------|
 | Constructor & driver standings | [Jolpica F1 API](https://api.jolpi.ca/ergast/f1/) | Verified |
-| Race attendance (145 races) | [GPDestinations.com](https://gpdestinations.com/resources/f1-attendance-figures/) | Verified |
+| Race attendance (165 races) | [GPDestinations.com](https://gpdestinations.com/resources/f1-attendance-figures/) | Verified |
 | Global viewership | [Formulapedia](https://formulapedia.com/f1-statistics/) / FOM press releases | Verified |
 | US viewership (ESPN/Nielsen) | [Motorsport.com](https://www.motorsport.com) / [Blackbook Motorsport](https://www.blackbookmotorsport.com) | Verified |
-| Team valuations | [Sportico](https://www.sportico.com) (2023 & 2024 reports) | Verified |
+| Team valuations | [Sportico](https://www.sportico.com) (2023, 2024 & 2025 reports) | Verified |
 | Sponsorship deal values | SportsPro, Reuters, GlobalData, press releases | Reported estimates — confidence labeled per row |
 
 > **Transparency note:** Sponsorship values are sourced from public reporting. Many F1 deals are confidential. Every figure in `data/templates/` includes its source and a confidence rating (HIGH / MED / LOW).
@@ -61,7 +61,7 @@ f1-commercial-analysis/
 # 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. Pull F1 standings data (2014-2024) from the Jolpica API
+# 2. Pull F1 standings data (2014-2025) from the Jolpica API
 python scripts/collect_f1_standings.py
 
 # 3. Run the analysis
@@ -76,10 +76,10 @@ streamlit run dashboard/app.py
 ## Dashboard Sections
 
 - **Overview** — headline metrics and the full viewership arc with Liberty Media acquisition marker
-- **F1's Growth Story** — viewership 2014–2024, attendance by circuit, social media growth
+- **F1's Growth Story** — viewership 2014–2025, attendance by circuit, social media growth
 - **Team Commercial Value** — valuation vs. championship position, commercial efficiency rankings
 - **Sponsorship ROI** — CPM comparison across sports, deal breakdown by confidence level
-- **Scenario Modeler** — model how championship outcomes shift team valuations (R²=0.53)
+- **Scenario Modeler** — model how championship outcomes shift team valuations (R²=0.45)
 
 ---
 
