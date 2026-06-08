@@ -191,7 +191,9 @@ def compute_sponsorship_roi_metrics() -> pd.DataFrame:
     viewership = load_viewership()
     sponsorship = load_sponsorship()
 
-    races_per_year = {2018: 21, 2019: 21, 2020: 17, 2021: 22, 2022: 22, 2023: 23, 2024: 24, 2025: 24}
+    # Race counts verified against Jolpica API schedule data.
+    # 2023: 22 races (Emilia Romagna GP cancelled due to flooding — not 23 as originally planned)
+    races_per_year = {2018: 21, 2019: 21, 2020: 17, 2021: 22, 2022: 22, 2023: 22, 2024: 24, 2025: 24}
 
     viewership["races"] = viewership["year"].map(races_per_year)
     # Use global_avg_per_race_m where available (2022+); fall back to fom_unique/races for earlier years
